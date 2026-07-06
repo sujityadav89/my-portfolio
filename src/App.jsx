@@ -93,7 +93,7 @@ function Nav(){
     window.addEventListener('scroll',h);
     return ()=>window.removeEventListener('scroll',h);
   },[]);
-  const links = ['About','Skills','Experience','Work','Contact'];
+  const links = ['About','Skills','Dashboard','Experience','Work','Contact'];
   return (
     <nav className={scrolled?'scrolled':''}>
       <a className="logo" href="#top">SUJIT<span>.</span>YADAV</a>
@@ -257,6 +257,152 @@ function Skills(){
   );
 }
 
+/* ---------------- Analytics Dashboard ---------------- */
+const DASHBOARD_STATS = [
+  { label:'Total sales', value:'$86.2K', change:'+14.8%', tone:'violet' },
+  { label:'Visitors', value:'128K', change:'+22.4%', tone:'blue' },
+  { label:'Conversion', value:'8.4%', change:'+4.2%', tone:'amber' },
+  { label:'Retention', value:'72%', change:'+9.6%', tone:'green' },
+];
+
+const DASHBOARD_BARS = [
+  { label:'Organic search', value:82 },
+  { label:'Paid campaigns', value:68 },
+  { label:'Direct traffic', value:74 },
+  { label:'Referrals', value:58 },
+];
+
+const DASHBOARD_ACTIVITY = [
+  { label:'Custom chart widgets', meta:'Interactive trend cards and filters' },
+  { label:'Role-based dashboard views', meta:'Admin, sales, and customer success screens' },
+  { label:'Responsive glass UI system', meta:'Desktop and tablet layouts with reusable cards' },
+];
+
+function Dashboard(){
+  useReveal('.dashboard-reveal',{stagger:.08});
+  return (
+    <section id="dashboard" className="dashboard-section">
+      <div className="section-head reveal dashboard-reveal">
+        <p className="section-num">03 / Analytics UI</p>
+        <h2 className="section-title">Modern analytics dashboard<br/>screens I build in React.</h2>
+        <p className="section-desc">Sample dashboard screen showing the kind of glassy analytics UI experience I have worked on: clean data cards, chart panels, filters, insights, and responsive product layouts.</p>
+      </div>
+
+      <div className="dashboard-shell glass reveal dashboard-reveal">
+        <div className="dashboard-topbar">
+          <div>
+            <span className="dash-kicker">Sample screen</span>
+            <h3>Analytics Dashboard</h3>
+          </div>
+          <div className="dash-filter">React + Tailwind + Charts</div>
+        </div>
+
+        <div className="dashboard-screen glass">
+          <aside className="dashboard-sidebar">
+            <b>Pulse<span>.</span></b>
+            {['Overview','Sales','Traffic','Reports'].map((item,index)=>(
+              <span className={index===0?'active':''} key={item}>{item}</span>
+            ))}
+          </aside>
+
+          <div className="dashboard-content">
+            <div className="dashboard-toolbar">
+              <div>
+                <span>Welcome back</span>
+                <strong>Executive analytics</strong>
+              </div>
+              <button type="button">Export report</button>
+            </div>
+
+            <div className="dashboard-grid">
+              <div className="dash-metrics">
+                {DASHBOARD_STATS.map(stat=>(
+                  <div className={'dash-stat '+stat.tone} key={stat.label}>
+                    <span>{stat.label}</span>
+                    <strong>{stat.value}</strong>
+                    <b>{stat.change}</b>
+                  </div>
+                ))}
+              </div>
+
+              <div className="dash-chart glass">
+                <div className="dash-panel-head">
+                  <span>Revenue analytics</span>
+                  <b>+24.8%</b>
+                </div>
+                <div className="chart-stage">
+                  <div className="chart-grid-lines"></div>
+                  <svg viewBox="0 0 520 210" role="img" aria-label="Analytics growth line chart">
+                    <defs>
+                      <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#7c5cff" stopOpacity="0.42" />
+                        <stop offset="100%" stopColor="#7c5cff" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path className="chart-fill" d="M0 162 C60 130 92 148 138 104 C190 54 236 126 290 82 C354 30 392 92 448 54 C482 31 504 37 520 24 L520 210 L0 210 Z" />
+                    <path className="chart-line" d="M0 162 C60 130 92 148 138 104 C190 54 236 126 290 82 C354 30 392 92 448 54 C482 31 504 37 520 24" />
+                    <circle cx="448" cy="54" r="6" />
+                    <circle cx="520" cy="24" r="6" />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="dash-panel glass">
+                <div className="dash-panel-head">
+                  <span>Traffic sources</span>
+                  <b>Live</b>
+                </div>
+                <div className="dash-bars">
+                  {DASHBOARD_BARS.map(item=>(
+                    <div className="dash-bar-row" key={item.label}>
+                      <div><span>{item.label}</span><b>{item.value}%</b></div>
+                      <i><em style={{width:item.value+'%'}}></em></i>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="dash-panel glass">
+                <div className="dash-panel-head">
+                  <span>Dashboard features</span>
+                  <b>Built UI</b>
+                </div>
+                <div className="dash-activity">
+                  {DASHBOARD_ACTIVITY.map(item=>(
+                    <div className="activity-row" key={item.label}>
+                      <span></span>
+                      <div>
+                        <b>{item.label}</b>
+                        <p>{item.meta}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="dash-device-card glass">
+                <span>Responsive sample</span>
+                <strong>Tablet-ready analytics views</strong>
+                <div className="device-bars">
+                  <i></i><i></i><i></i>
+                </div>
+              </div>
+
+              <div className="dash-device-card glass amber-card">
+                <span>UI craft</span>
+                <strong>Glassy cards, soft borders, motion</strong>
+                <div className="device-orbit">
+                  <i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- Experience ---------------- */
 const EXPERIENCE = [
   { period:'Nov 2021 — Present', role:'Senior UI / Front-End Developer', org:'Hexalytics Inc. · Kolhapur, Maharashtra', current:true,
@@ -276,7 +422,7 @@ function Experience(){
   return (
     <section id="experience">
       <div className="section-head reveal exp-reveal-head">
-        <p className="section-num">03 / Experience</p>
+        <p className="section-num">04 / Experience</p>
         <h2 className="section-title">A straight line from<br/>Photoshop layers to design systems.</h2>
       </div>
       <div className="timeline">
@@ -327,7 +473,7 @@ function Work(){
   return (
     <section id="work" className="work-pin" ref={pinRef}>
       <div className="work-head section-head">
-        <p className="section-num">04 / Selected Work</p>
+        <p className="section-num">05 / Selected Work</p>
         <h2 className="section-title">Scroll horizontally.<br/>Everything below shipped.</h2>
       </div>
       <div className="work-track" ref={trackRef}>
@@ -352,7 +498,7 @@ function Contact(){
   return (
     <section id="contact">
       <div className="contact-panel glass reveal contact-reveal">
-        <p className="section-num">05 / Contact</p>
+        <p className="section-num">06 / Contact</p>
         <h2>Have an interface that needs<br/>eight years of attention to detail?</h2>
         <p className="section-desc">Open to senior front-end and UI engineering roles, and select freelance builds.</p>
         <div className="contact-links">
@@ -387,6 +533,7 @@ function App(){
     <Hero />
     <About />
     <Skills />
+    <Dashboard />
     <Experience />
     <Work />
     <Contact />
